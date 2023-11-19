@@ -1,0 +1,48 @@
+# Ignore system files and directories
+.vscode/
+.DS_Store
+node_modules/
+vendor/
+*.log
+
+# Ignore build and compiled files
+/dist/
+/build/
+*.min.js
+*.min.css
+
+# Ignore Composer dependencies
+/vendor/
+composer.lock
+
+# Ignore NPM/Yarn dependencies
+package-lock.json
+yarn.lock
+
+# Ignore database configuration files
+wp-config.php
+
+# Ignore environment configuration files
+.env
+
+# Ignore cache and temporary files
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/object-cache.php
+
+# Ignore logs and backup files
+*.log
+*.bak
+
+# Ignore local development files
+.local/
+
+# Ignore IDE and code editor files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore database dumps and backups
+*.sql
+*.sql.gz
