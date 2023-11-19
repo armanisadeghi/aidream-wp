@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress-Plugin">
+    <rule ref="WordPress-Core"/>
+    <rule ref="WordPress-Docs"/>
+    <file>./</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+    <!-- Other exclusions or rules as needed -->
+</ruleset>

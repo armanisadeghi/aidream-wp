@@ -1,0 +1,8 @@
+language: php
+php:
+  - '8.2'
+  - '7.4' # or other versions you want to test against
+before_script:
+  - composer install
+script: 
+  - vendor/bin/phpunit
