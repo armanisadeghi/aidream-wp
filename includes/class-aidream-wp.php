@@ -6,18 +6,52 @@
 class AI_Dream_WP {
 
     /**
+	 * The unique identifier of this plugin.
+	 */
+	protected $plugin_name;
+
+	/**
+	 * The current version of the plugin.
+	 */
+	protected $version;
+
+    /**
      * Initialize the class and set its properties.
      */
     public function __construct() {
-        // Initialization code here.
+		$this->version = AIDREAM_WP_VERSION;
+		$this->plugin_name = 'aidream_wp';
+
+        require_once AIDREAM_WP_PLUGIN_DIR . 'admin/class-aidream-wp-admin.php';
+        require_once AIDREAM_WP_PLUGIN_DIR . 'api/class-aidream-wp-api.php';
+        require_once AIDREAM_WP_PLUGIN_DIR . 'public/class-aidream-wp-public.php';
     }
 
     /**
      * Register all of the hooks related to the functionality of the plugin.
      */
     private function define_hooks() {
-        // Add action and filter hooks here.
-        // Example: add_action('init', array($this, 'your_method_name'));
+        $plugin_api = new AI_Dream_WP_Api($this->plugin_name, $this->version);
+        add_action('rest_api_init', array($plugin_api, 'register_rest_endpoints'));
+
+        if (is_admin()) {
+            $plugin_admin = new AI_Dream_WP_Admin($this->plugin_name, $this->version);
+            add_action( 'admin_enqueue_scripts', array($plugin_admin, 'enqueue_styles') );
+		    add_action( 'admin_enqueue_scripts', array($plugin_admin, 'enqueue_scripts') );
+            add_action( 'admin_menu', array($plugin_admin, 'add_menu') );
+        } else {
+            $plugin_public = new AI_Dream_WP_Public($this->plugin_name, $this->version);
+
+            // Check if Yoast SEO is active
+            $plugins = get_option( 'active_plugins', array() );
+            if (in_array('wordpress-seo/wp-seo.php', $plugins)) {
+                add_filter( 'wpseo_title', array($plugin_public, 'modify_meta_title') );
+                add_filter( 'wpseo_metadesc', array($plugin_public, 'modify_yoast_desc') );
+            } else {
+                add_filter('pre_get_document_title', array($plugin_public, 'modify_meta_title') );
+                add_action('wp_head', array($plugin_public, 'modify_meta') );
+            }
+        }
     }
 
     /**
@@ -25,34 +59,6 @@ class AI_Dream_WP {
      */
     public function run() {
         $this->define_hooks();
-        // Additional run code can be added here.
     }
 
-    /**
-     * A sample method that could be called by an action hook.
-     */
-    public function your_method_name() {
-        // Method functionality here.
-    }
 }
-
-// Include other necessary files from the 'includes' directory.
-require_once plugin_dir_path(__FILE__) . 'class-aidream-wp-meta-handler.php';
-
-// Initialize the plugin.
-$ai_dream_wp_plugin = new AI_Dream_WP();
-$ai_dream_wp_plugin->run();
-
-
-"""
-Explanation:
-Class Definition: AI_Dream_WP is the main class of your plugin. It's where you'll define most of your plugin's functionality.
-Constructor: The constructor can be used to set up basic properties or states needed by your plugin.
-Hooks Registration: define_hooks method is where you'll hook your plugin's functions into WordPress actions and filters.
-Run Method: The run method initializes everything by calling define_hooks. It's the entry point for the plugin's execution.
-Method Example: your_method_name is a placeholder for a method that you might want to execute at some hook point.
-Including Other Files: Include other class files like the meta handler class.
-Usage:
-You can expand this class by adding more methods that handle different aspects of your plugin's functionality. You'll also link this class with action and filter hooks to interact with WordPress.
-
-"""
