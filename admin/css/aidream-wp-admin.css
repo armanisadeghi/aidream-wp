@@ -1,3 +1,99 @@
+/* I just added some quick css but we should either istall a dashboard template or bootstrap */
+
+/* For now, let's just add Bootstrap */
+
 #select_post {
-    width: 95%;
+    width: 75%;
+}
+
+.page_title {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    text-align: center;
+    font-size: 36px; /* Larger font size for the plugin title */
+    border: 1px solid #003f83; /* Slightly darker blue for the border */
+    padding: 15px 0; /* More padding for emphasis */
+    margin-top: 10px;
+    margin-bottom: 30px; /* Space before the form starts */
+}
+
+.heading-section {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #003f83;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4; /* Light grey background */
+}
+
+/* Style the form table */
+.form-table {
+    width: 90%;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Style table rows */
+.form-table tr {
+    border-bottom: 1px solid #eee; /* Light line between rows */
+}
+
+/* Style table headers */
+.form-table th {
+    text-align: left;
+    padding: 15px;
+    color: #007bff; /* Blue theme */
+    font-weight: normal;
+}
+
+/* Style table data cells */
+.form-table td {
+    padding: 15px;
+}
+
+/* Style inputs and textareas */
+input[type="text"], textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Correct box sizing */
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007bff; /* Bootstrap blue */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Hover effect */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Additional styling for dynamic content */
+.dynamic-headings input, .dynamic-images input {
+    margin-bottom: 5px; /* Space out inputs */
+}
+
+.image-container img {
+    margin-right: 10px; /* Space between image and inputs */
 }
